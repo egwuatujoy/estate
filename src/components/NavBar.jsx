@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 
 const NavBar = () => {
   const [showMobileMenu, setMobileMenu] = useState(false);
 
-
   function handleCloseClick() {
     setMobileMenu(!showMobileMenu);
   }
 
-  function handleMenuClick () {
-    setMobileMenu(true)
+  function handleMenuClick() {
+    setMobileMenu(true);
   }
 
-
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showMobileMenu]);
 
   return (
     <div className="absolute top-0 left-0 w-full z-10  ">
@@ -37,7 +45,12 @@ const NavBar = () => {
           Sign Up
         </button>
 
-        <img src={assets.menu_icon} alt="" className="md:hidden  w-7 " onClick={handleMenuClick} />
+        <img
+          src={assets.menu_icon}
+          alt=""
+          className="md:hidden  w-7 "
+          onClick={handleMenuClick}
+        />
       </div>
       {/*---------- */}
 
@@ -54,13 +67,25 @@ const NavBar = () => {
         </div>
 
         <ul className="flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium  ">
-          <a href="#Header" className="px-4 py-2 rounded-full inline-block">
+          <a
+            href="#Header"
+            className="px-4 py-2 rounded-full inline-block"
+            onClick={handleCloseClick}
+          >
             Home
           </a>
-          <a href="#About" className="px-4 py-2 rounded-full inline-block">
+          <a
+            href="#About"
+            className="px-4 py-2 rounded-full inline-block"
+            onClick={handleCloseClick}
+          >
             About
           </a>
-          <a href="#Projects" className="px-4 py-2 rounded-full inline-block">
+          <a
+            href="#Projects"
+            className="px-4 py-2 rounded-full inline-block"
+            onClick={handleCloseClick}
+          >
             Projects
           </a>
           <a
