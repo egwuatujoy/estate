@@ -1,4 +1,10 @@
+import { toast } from "react-toastify";
+
 const Contact = () => {
+  const notify = () => {
+    toast.success("Form Submitted Successfully");
+  };
+
   return (
     <div
       className="text-center p-6 py-20 lg:px-32 w-full overflow-hidden"
@@ -49,8 +55,12 @@ const Contact = () => {
           ></textarea>
         </div>
 
-
-        <button className="bg-blue-600 text-white py-2 px-12 mb-10 rounded">Send Message</button>
+        <button
+          onClick={notify}
+          className="bg-blue-600 text-white py-2 px-12 mb-10 rounded"
+        >
+          Send Message
+        </button>
       </form>
     </div>
   );
